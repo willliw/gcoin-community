@@ -1527,6 +1527,7 @@ Value getassetinfo(const Array& params, bool fHelp)
                  "  \"member_control\" : false,       (bool) Have member control or not \n"
                  "  \"metadata_link\" : xxx,       (string) Hyper link for the metadata \n"
                  "  \"metadata_hash\" : xxx,       (string) Hash for the metadata \n"
+                 "  \"Owner\" : xxx,       (string) Address of the color owner \n"
             "}\n"
             "\nExamples:\n"
             + HelpExampleCli("getassetinfo", "1")
@@ -1541,6 +1542,7 @@ Value getassetinfo(const Array& params, bool fHelp)
 
     Object result;
     LicenseInfoToJSON(info, result);
+    result.push_back(Pair("Owner", plicense->GetOwner(color)));
 
     return result;
 }
